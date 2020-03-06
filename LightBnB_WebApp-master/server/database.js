@@ -1,18 +1,9 @@
-const { Pool } = require('pg');
-
-const pool = new Pool({
-  host: 'localhost',
-  user: 'vagrant',
-  password: '123',
-  database: 'lightbnb'
-});
-
-pool.connect();
+const pool = require('./index')
 
 // module.exports = client;
 
-const properties = require('./json/properties.json');
-const users = require('./json/users.json');
+// const properties = require('./json/properties.json');
+// const users = require('./json/users.json');
 
 /// Users
 
@@ -112,7 +103,6 @@ const getAllProperties = function(options, limit = 10) {
   }
 
   if (options.owner_id) {
-    console.log('id', options.owner_id)
     queryParams.push(Number(options.owner_id));
     queryString += `AND owner_id = $${queryParams.length}`;
   }
